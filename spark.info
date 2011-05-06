@@ -4,6 +4,5 @@ compatibility: 2.0.1
 
 dependencies:
   php-activerecord: 0.0.1
-  authentic: 0.0.1
 
 tags: ["authorization"]
