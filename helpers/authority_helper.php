@@ -2,13 +2,13 @@
 
 if ( ! function_exists('can') && ! function_exists('cannot'))
 {
-    function can($action, $resource)
+    function can($action, $resource, $resource_val = null)
     {
-        return Authority::can($action, $resource);
+        return Authority::can($action, $resource, $resource_val);
     }
 
-    function cannot($action, $resource)
+    function cannot($action, $resource, $resource_val = null)
     {
-        return ! cannot($action, $resource);
+        return ! can($action, $resource, $resource_val);
     }
 }

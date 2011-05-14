@@ -62,6 +62,6 @@ class Authority extends Authority\Ability {
 
         // Inside of Authority\Ability::current_user()
         //$ci = get_instance();
-        //return $ci->authentic->current_user() ?: new User;
+        //return $ci->authentic->current_user() ?: new \User;
     }
 }

@@ -38,7 +38,7 @@ abstract class Ability {
         }
     }
 
-    public static function can($action, $resource)
+    public static function can($action, $resource, $resource_val = null)
     {
         // See if the action has been aliased to somethign else 
         $true_action = static::determine_action($action);
@@ -48,9 +48,11 @@ abstract class Ability {
         if ($matches && ! empty($matches))
         {
             $results = array();
+            $resource_value = ($resource_val) ?: $resource;
+
             foreach ($matches as $matched_rule)
             {
-                $results[] = !($matched_rule->callback($resource) xor $matched_rule->allowed());
+                $results[] = !($matched_rule->callback($resource_value) xor $matched_rule->allowed());
             }
 
             // Last rule overrides others
@@ -62,9 +64,9 @@ abstract class Ability {
         }
     }
 
-    public static function cannot($action, $resource)
+    public static function cannot($action, $resource, $resource_val = null)
     {
-        static::can($action, $resource);    
+        static::can($action, $resource, $resource_val);    
     }
 
     public static function allow($action, $resource, \Closure $callback = null)
@@ -136,7 +138,7 @@ abstract class Ability {
     protected static function current_user()
     {
         $ci = get_instance();
-        return $ci->authentic->current_user() ?: new User;
+        return $ci->authentic->current_user() ?: new \User;
     }
 
 }
