@@ -2,7 +2,4 @@ name: authority
 version: 0.0.2
 compatibility: 2.0.1
 
-dependencies:
-  php-activerecord: 0.0.1
-
 tags: ["authorization"]

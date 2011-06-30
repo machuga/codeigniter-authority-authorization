@@ -8,7 +8,7 @@
  * Please check out his work at http://github.com/ryanb/cancan/
  *
  * @package     Authority
- * @version     0.0.1
+ * @version     0.0.2
  * @author      Matthew Machuga
  * @license     MIT License
  * @copyright   2011 Matthew Machuga
@@ -32,7 +32,7 @@ abstract class Ability {
 
         if ( ! $user || ! $user->role) return false;
 
-        if ($user-role == 'admin')
+        if ($user->role == 'admin')
         {
             static::allow('manage', 'all');
         }
@@ -138,7 +138,10 @@ abstract class Ability {
     protected static function current_user()
     {
         $ci = get_instance();
-        return $ci->authentic->current_user() ?: new \User;
+        if (isset($ci->authentic)) {
+            // using authentic library
+            return $ci->authentic->current_user() ?: new \User;
+        }
     }
 
 }
