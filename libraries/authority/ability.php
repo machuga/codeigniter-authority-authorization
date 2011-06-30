@@ -135,13 +135,13 @@ abstract class Ability {
         static::initialize(static::current_user());
     }
 
-	protected static function current_user()
-	{
-		$ci = get_instance();
-		if (isset($ci->authentic)) {
-			// using authentic library
-			return $ci->authentic->current_user() ?: new \User;
-		}
-	}
+    protected static function current_user()
+    {
+        $ci = get_instance();
+        if (isset($ci->authentic)) {
+            // using authentic library
+            return $ci->authentic->current_user() ?: new \User;
+        }
+    }
 
 }

@@ -63,11 +63,5 @@ class Authority extends Authority\Ability {
     protected static function current_user()
     {
         return parent::current_user();
-
-        // Inside of Authority\Ability::current_user()
-        $ci = get_instance();
-		if (isset($ci->authentic)) {
-        	return $ci->authentic->current_user() ?: new \User;			
-		}
     }
 }
