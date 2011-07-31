@@ -8,7 +8,7 @@
  * Please check out his work at http://github.com/ryanb/cancan/
  *
  * @package     Authority
- * @version     0.0.2
+ * @version     0.0.3
  * @author      Matthew Machuga
  * @license     MIT License
  * @copyright   2011 Matthew Machuga
@@ -26,9 +26,9 @@ class Authority extends Authority\Ability {
 
     public static function initialize($user)
     {
-		// an example configuration
-		
-		/*
+        // an example configuration
+
+        /*
         Authority::action_alias('manage', array('create', 'read', 'update', 'delete'));
         Authority::action_alias('moderate', array('update', 'delete', 'edit'));
 
@@ -47,7 +47,7 @@ class Authority extends Authority\Ability {
 
             Authority::allow('manage', 'Project');
             Authority::allow('manage', 'User', function($a_user) use ($user) {
-                return $user->id == $a_user->id; 
+                return $user->id == $a_user->id;
             });
         }
 
@@ -57,7 +57,7 @@ class Authority extends Authority\Ability {
                 return $user->company_id == $project->company_id;
             });
         }
-		*/
+        */
     }
 
     protected static function current_user()

@@ -8,7 +8,7 @@
  * Please check out his work at http://github.com/ryanb/cancan/
  *
  * @package     Authority
- * @version     0.0.2
+ * @version     0.0.3
  * @author      Matthew Machuga
  * @license     MIT License
  * @copyright   2011 Matthew Machuga
@@ -64,6 +64,9 @@ class Rule {
 
     public function callback($resource)
     {
+        if (isset($this->_callback) && is_string($resource)) {
+            return false;
+        }
         return (isset($this->_callback)) ? $this->_callback($resource) : true;
     }
 

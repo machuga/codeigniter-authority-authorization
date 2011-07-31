@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Authority
  *
@@ -8,7 +8,7 @@
  * Please check out his work at http://github.com/ryanb/cancan/
  *
  * @package     Authority
- * @version     0.0.2
+ * @version     0.0.3
  * @author      Matthew Machuga
  * @license     MIT License
  * @copyright   2011 Matthew Machuga
@@ -21,7 +21,7 @@ namespace Authority;
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 abstract class Ability {
-    
+
     protected static $_rules = array();
     protected static $_action_aliases = array();
 
@@ -40,11 +40,15 @@ abstract class Ability {
 
     public static function can($action, $resource, $resource_val = null)
     {
-        // See if the action has been aliased to somethign else 
+        if ( empty(static::$_rules)) {
+            static::initialize(static::current_user());
+        }
+
+        // See if the action has been aliased to somethign else
         $true_action = static::determine_action($action);
 
         $matches = static::find_matches($true_action, $resource);
-        
+
         if ($matches && ! empty($matches))
         {
             $results = array();
@@ -66,7 +70,7 @@ abstract class Ability {
 
     public static function cannot($action, $resource, $resource_val = null)
     {
-        static::can($action, $resource, $resource_val);    
+        static::can($action, $resource, $resource_val);
     }
 
     public static function allow($action, $resource, \Closure $callback = null)
@@ -123,8 +127,8 @@ abstract class Ability {
             {
                 if ($rule->relevant($action, $resource))
                 {
-                    $matches[] = $rule;     
-                }        
+                    $matches[] = $rule;
+                }
             }
         }
         return $matches;
@@ -143,5 +147,4 @@ abstract class Ability {
             return $ci->authentic->current_user() ?: new \User;
         }
     }
-
 }
