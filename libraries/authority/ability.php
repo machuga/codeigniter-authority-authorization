@@ -70,7 +70,7 @@ abstract class Ability {
 
     public static function cannot($action, $resource, $resource_val = null)
     {
-        return static::can($action, $resource, $resource_val);
+        return ! static::can($action, $resource, $resource_val);
     }
 
     public static function allow($action, $resource, \Closure $callback = null)

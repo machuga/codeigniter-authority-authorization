@@ -9,6 +9,6 @@ if ( ! function_exists('can') && ! function_exists('cannot'))
 
     function cannot($action, $resource, $resource_val = null)
     {
-        return ! can($action, $resource, $resource_val);
+        return Authority::cannot($action, $resource, $resource_val);
     }
 }
